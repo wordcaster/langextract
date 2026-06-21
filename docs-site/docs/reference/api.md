@@ -8,12 +8,6 @@ title: API reference
 The public API reachable from `import langextract as lx`. Signatures, types,
 and defaults below are drawn from the LangExtract source at version **1.5.0**.
 
-:::note Draft — pending verification
-This reference was drafted from the library source and is awaiting accuracy
-review. Treat defaults and behavior as authoritative to v1.5.0; verify against
-your installed version if it differs.
-:::
-
 The top level exposes two convenience functions — `lx.extract` and
 `lx.visualize` — plus submodules accessed lazily: `lx.data`, `lx.io`,
 `lx.factory`, `lx.providers`, `lx.exceptions`, and others.
