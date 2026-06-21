@@ -20,22 +20,23 @@ text ──▶ chunk ──▶ infer (LLM) ──▶ resolve (parse) ──▶ a
                     routing                          to source    set or None
 ```
 
-1. **Chunk.** Long input is split into chunks of at most `max_char_buffer`
-   characters (default `1000`). Smaller chunks give the model less to read at
+1. **Chunk.** LangExtract splits long input into chunks of at most
+   `max_char_buffer` characters (default `1000`). Smaller chunks give the model less to read at
    once, which tends to improve accuracy, at the cost of more API calls.
-2. **Infer.** Each chunk is sent to a language model. Your prompt and examples
-   are turned into a structured prompt; on supported models, schema constraints
-   derived from your examples push the model toward consistent output.
-3. **Resolve.** The model's raw text response (JSON or YAML, optionally inside a
-   code fence) is parsed into candidate extractions.
-4. **Align.** Each candidate's text is located in the source. Exact matches are
-   preferred; fuzzy alignment can accept near-matches within a configurable
-   threshold.
+2. **Infer.** LangExtract sends each chunk to a language model. It turns your
+   prompt and examples into a structured prompt; on supported models, schema
+   constraints derived from your examples push the model toward consistent
+   output.
+3. **Resolve.** LangExtract parses the model's raw text response (JSON or YAML,
+   optionally inside a code fence) into candidate extractions.
+4. **Align.** LangExtract locates each candidate's text in the source. It
+   prefers exact matches; fuzzy alignment can accept near-matches within a
+   configurable threshold.
 5. **Ground.** A successful match records a character span (`char_interval`).
-   When a candidate can't be located in the source, its `char_interval` is left
-   empty — the signal that the value wasn't actually in your text.
-6. **Result.** Everything is collected into an `AnnotatedDocument` (or a list of
-   them, if you passed multiple documents).
+   When LangExtract can't locate a candidate in the source, it leaves the
+   `char_interval` empty — the signal that the value wasn't actually in your text.
+6. **Result.** LangExtract collects everything into an `AnnotatedDocument` (or a
+   list of them, if you passed multiple documents).
 
 [Grounding](grounding) explains stages 4 and 5 in more depth, and the
 [API reference](../reference/api#2-data-types) lists the exact result objects.
@@ -58,7 +59,7 @@ by default, with OpenAI and local Ollama models also supported. See
 These stages map directly to the project's stated goals: source grounding (the
 align and ground stages), reliable structure (examples plus schema constraints),
 and handling long documents (chunking, parallel processing, and multiple passes).
-The parameters that tune each stage are introduced where you use them — see the
+The parameters that tune each stage appear where you use them — see the
 [long-document workflow](../how-to/long-document-workflow) for the chunking,
 parallelism, and recall levers in a real scenario.
 

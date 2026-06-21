@@ -120,3 +120,7 @@ docs-site/docs/
   or behavior.
 - Voice: clear, professional product-documentation tone — direct and concrete,
   no marketing language.
+- Style: the prose follows the
+  [Google developer documentation style guide](https://developers.google.com/style)
+  — second person, present tense, active voice, sentence-case headings, and
+  descriptive link text.

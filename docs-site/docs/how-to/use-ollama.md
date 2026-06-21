@@ -46,7 +46,7 @@ result = lx.extract(
 )
 ```
 
-No API key is required. To reach a server at a different address, pass
+You don't need an API key. To reach a server at a different address, pass
 `model_url` explicitly; with it omitted, LangExtract uses the default
 `http://localhost:11434`.
 

@@ -13,8 +13,8 @@ than taking a JSON blob on faith. This page explains the concept; to act on it
 
 ## `char_interval`: where an extraction lives
 
-Each `Extraction` carries a `char_interval` that records where its text was found
-in the source. The interval is half-open — `start_pos` is inclusive and
+Each `Extraction` carries a `char_interval` that records where LangExtract found
+its text in the source. The interval is half-open — `start_pos` is inclusive and
 `end_pos` is exclusive — so `source_text[start_pos:end_pos]` returns the matched
 substring.
 
@@ -23,8 +23,8 @@ substring.
 The most important thing `char_interval` tells you is whether an extraction is
 *real*:
 
-- **Set** — the text was located in the source, and the interval is its exact
-  position.
+- **Set** — LangExtract located the text in the source, and the interval is its
+  exact position.
 - **`None`** — the model produced a value that does not appear in the source.
   This is the signal for a likely hallucination, or for content the model copied
   from your examples rather than the input.
@@ -34,8 +34,8 @@ with extractions.
 
 ## Exact and fuzzy alignment
 
-When an extraction *is* grounded, `alignment_status` records how its text was
-matched to the source:
+When an extraction *is* grounded, `alignment_status` records how LangExtract
+matched its text to the source:
 
 - **`MATCH_EXACT`** — the extraction text matched the source character for
   character.
@@ -44,7 +44,7 @@ matched to the source:
 - **`MATCH_GREATER` / `MATCH_LESSER`** — it matched a span larger or smaller than
   the extraction text.
 
-Exact matching is preferred; fuzzy alignment is what lets grounding survive the
+LangExtract prefers exact matching; fuzzy alignment lets grounding survive the
 minor reformatting a model sometimes applies. The thresholds and algorithm that
 govern fuzzy matching are tuning parameters, documented in the
 [API reference](../reference/api#1-lxextract).

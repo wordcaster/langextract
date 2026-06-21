@@ -29,17 +29,17 @@ family of models without LangExtract enumerating each one.
 
 ## When a model id doesn't match
 
-If a `model_id` matches no registered pattern, LangExtract cannot infer the
+If a `model_id` matches no registered pattern, LangExtract can't infer the
 provider and raises an error. You then name the provider explicitly through a
-configuration object. The exact patterns, the precedence rules, and the
-environment variables each provider reads are listed in the
+configuration object. For the exact patterns, the precedence rules, and the
+environment variables each provider reads, see the
 [API reference §4](../reference/api#4-providers--model-routing).
 
 ## Extending with plugins
 
 Providers are pluggable: a third-party package can register new patterns through
-an entry point, so support for additional models can be added without changing
-LangExtract itself. The plugin mechanism is described in the
+an entry point, adding support for more models without changing LangExtract
+itself. For details, see the
 [API reference §4](../reference/api#4-providers--model-routing).
 
 ## See also

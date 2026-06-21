@@ -45,11 +45,11 @@ no zero-shot mode — provide at least one example.
 LangExtract aligns each extraction back to the source text. Examples that follow
 these rules teach the model a pattern that aligns cleanly on real input:
 
-1. **Verbatim text.** Each `extraction_text` should be copied exactly from the
-   example's `text` — no paraphrasing, no normalization.
+1. **Verbatim text.** Copy each `extraction_text` exactly from the example's
+   `text` — no paraphrasing, no normalization.
 2. **In order of appearance.** List extractions in the order they occur in the
    text.
-3. **No overlaps.** Spans should not overlap each other.
+3. **No overlaps.** Don't let spans overlap each other.
 
 When examples violate these rules, LangExtract emits **prompt-alignment
 warnings**. By default these are warnings, not errors, and extraction continues —

@@ -52,8 +52,8 @@ for extraction in result.extractions:
 
 ## Filter to grounded results
 
-An extraction whose `char_interval` is `None` was not found in the source. Filter
-those out whenever correctness matters:
+A `None` `char_interval` means LangExtract couldn't locate the extraction in the
+source. Filter those out whenever correctness matters:
 
 ```python
 grounded = [e for e in result.extractions if e.char_interval]
@@ -88,7 +88,7 @@ with open("visualization.html", "w") as f:
 - In a Jupyter or Colab notebook, `visualize` returns an `IPython.display.HTML`
   object (use `.data` to get the string); in a plain script it returns the HTML
   string.
-- Only extractions with a valid `char_interval` are rendered.
+- LangExtract renders only extractions with a valid `char_interval`.
 - Given a JSONL path, it visualizes the **first** document in the file.
 
 ## See also

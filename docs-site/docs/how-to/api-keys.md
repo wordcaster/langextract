@@ -7,8 +7,8 @@ title: Supply API keys
 
 Cloud providers (Gemini, OpenAI) need a credential; local models via
 [Ollama](use-ollama) need none. LangExtract reads credentials from environment
-variables, or you can pass one directly. This guide covers each option; the exact
-per-provider precedence is listed in the
+variables, or you can pass one directly. This guide covers each option; for the
+exact per-provider precedence, see the
 [API reference §4](../reference/api#4-providers--model-routing).
 
 ## `LANGEXTRACT_API_KEY` (any cloud provider)
@@ -34,8 +34,8 @@ each.
 ## The `api_key` parameter
 
 You can pass a key directly to `lx.extract` instead of using the environment.
-This is convenient for a quick test; prefer an environment variable for anything
-you share or deploy.
+Passing a key directly is convenient for a quick test; prefer an environment
+variable for anything you share or deploy.
 
 ```python
 import langextract as lx
@@ -51,7 +51,7 @@ result = lx.extract(
 
 ## A `.env` file
 
-LangExtract reads keys from the environment; it does not load a `.env` file on
+LangExtract reads keys from the environment; it doesn't load a `.env` file on
 its own. Keep your key in `.env`:
 
 ```

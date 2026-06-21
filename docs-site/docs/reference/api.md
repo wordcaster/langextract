@@ -346,8 +346,8 @@ lx.io.is_url(text)  # -> bool
 
 ## 7. Exceptions — `lx.exceptions`
 
-All inherit from `LangExtractError`, so a single `except LangExtractError` will
-catch any library error.
+All inherit from `LangExtractError`, so a single `except LangExtractError`
+catches any library error.
 
 ```
 LangExtractError

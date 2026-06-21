@@ -28,8 +28,8 @@ export OPENAI_API_KEY="your-openai-key"
 
 ## 3. Run an extraction with an OpenAI model
 
-Pass an OpenAI `model_id` such as `gpt-4o`. The provider is selected from the
-model id automatically — see [Model backends](../concepts/model-backends).
+Pass an OpenAI `model_id` such as `gpt-4o`. LangExtract selects the provider
+from the model id automatically — see [Model backends](../concepts/model-backends).
 
 ```python
 import langextract as lx
@@ -56,7 +56,7 @@ result = lx.extract(
 
 For large jobs, the OpenAI provider can use the OpenAI Batch API. Enable it
 through `language_model_params` with a `batch` configuration; the `threshold` is
-the number of prompts at which batching kicks in.
+the number of prompts at which batching starts.
 
 ```python
 result = lx.extract(

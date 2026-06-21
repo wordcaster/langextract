@@ -19,18 +19,18 @@ trace each value back to where it came from.
 
 - **Source grounding.** Every extraction is tied to a character span in the
   original text. Extractions the model could not locate in the source are
-  flagged (their character interval is empty), so hallucinated values are easy
-  to filter out.
+  flagged (their character interval is empty), so you can filter out
+  hallucinated values.
 - **Structured output from examples.** You don't define a schema by hand. A few
   high-quality examples shape the output, and on supported models LangExtract
   applies schema constraints to keep results consistent.
-- **Built for long documents.** Text is chunked, processed in parallel, and can
-  be run over multiple passes to improve recall on large inputs.
+- **Built for long documents.** LangExtract chunks long input, processes the
+  chunks in parallel, and can make multiple passes to improve recall on large
+  inputs.
 - **Interactive visualization.** Results export to JSONL and render as a
   self-contained HTML file that highlights every entity in context.
 - **Multiple model backends.** Google Gemini (the default), OpenAI, and local
-  models via Ollama are supported out of the box, with a plugin system for
-  others.
+  models via Ollama are built in, with a plugin system for adding others.
 
 ## Where to go next
 

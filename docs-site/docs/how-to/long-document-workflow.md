@@ -75,8 +75,8 @@ from a trusted source, ideally in a sandboxed environment.
 
 ## 3. Run the extraction with the scaling levers
 
-Three parameters control how a long input is processed. Each is set here at the
-point it matters:
+Three parameters control how LangExtract processes a long input. This example
+sets each one at the point it matters:
 
 ```python
 result = lx.extract(
@@ -108,8 +108,8 @@ antecedent was in the prior chunk — still resolves.
 
 ## 4. Keep the grounded results
 
-Each extraction records where it was found. Filter to the grounded ones before
-you trust the output:
+Each extraction records where LangExtract found it. Filter to the grounded ones
+before you trust the output:
 
 ```python
 grounded = [e for e in result.extractions if e.char_interval]

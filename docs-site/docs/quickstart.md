@@ -5,7 +5,7 @@ title: Quickstart
 
 # Quickstart
 
-This walks you from an empty environment to a working, highlighted
+This quickstart walks you from an empty environment to a working, highlighted
 visualization of extracted entities. It uses Google Gemini, the default model
 backend.
 
