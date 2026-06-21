@@ -1,13 +1,13 @@
 ---
-sidebar_position: 2
-title: Prompts & examples
+sidebar_position: 4
+title: Write prompts & examples
 ---
 
-# Prompts & examples
+# Write prompts & examples
 
 The prompt and the examples are the two inputs that most determine output
 quality. A good model with weak examples produces worse results than a modest
-model with strong ones. This page explains how to write both.
+model with strong ones. This guide covers how to write both.
 
 ## The two pieces
 
@@ -17,6 +17,8 @@ model with strong ones. This page explains how to write both.
   look.
 
 ```python
+import langextract as lx
+
 prompt = "Extract medication name, dosage, route, frequency, and duration in order of appearance."
 
 examples = [
@@ -38,10 +40,10 @@ examples = [
 `lx.extract` raises a `ValueError` if `examples` is missing or empty. There is
 no zero-shot mode — provide at least one example.
 
-## The rules that make examples work
+## Follow the alignment rules
 
 LangExtract aligns each extraction back to the source text. Examples that follow
-the alignment rules teach the model a pattern that aligns cleanly on real input:
+these rules teach the model a pattern that aligns cleanly on real input:
 
 1. **Verbatim text.** Each `extraction_text` should be copied exactly from the
    example's `text` — no paraphrasing, no normalization.
@@ -51,22 +53,27 @@ the alignment rules teach the model a pattern that aligns cleanly on real input:
 
 When examples violate these rules, LangExtract emits **prompt-alignment
 warnings**. By default these are warnings, not errors, and extraction continues —
-but resolving them is one of the highest-leverage things you can do. You can
-raise the strictness:
+but resolving them is one of the highest-leverage things you can do.
+
+## Raise the strictness when you need to
+
+Two parameters control how prompt validation behaves:
 
 - `prompt_validation_level` — `OFF`, `WARNING` (default), or `ERROR` (raise on
   failures).
-- `prompt_validation_strict` — when `True` with `ERROR`, also raises on
-  non-exact (fuzzy or partial) matches.
+- `prompt_validation_strict` — when `True` with `ERROR`, also raises on non-exact
+  (fuzzy or partial) matches.
 
-## Attributes add structure within a class
+## Use attributes to add structure within a class
 
 Each `Extraction` can carry `attributes` — a dictionary of additional fields.
-This is how you capture properties of an entity without inventing a new class
-for every variation.
+This is how you capture properties of an entity without inventing a new class for
+every variation.
 
 ```python
-lx.data.Extraction(
+import langextract as lx
+
+extraction = lx.data.Extraction(
     extraction_class="character",
     extraction_text="ROMEO",
     attributes={"emotional_state": "wonder"},
@@ -74,23 +81,9 @@ lx.data.Extraction(
 ```
 
 Attributes are also where you decide how much the model should lean on its own
-world knowledge versus staying strictly on the text. Asking for an attribute
-like `"literary_context": "tragic heroine"` invites inference; asking only for
-attributes visible in the text keeps results close to the evidence. The balance
-is set entirely by your instructions and example attributes.
-
-## Guarding against ungrounded extractions
-
-Models can occasionally copy content from your *examples* rather than the input
-text. LangExtract detects this: an extraction it can't locate in the source has
-an empty `char_interval`. Filter to grounded results when that matters:
-
-```python
-grounded = [e for e in result.extractions if e.char_interval]
-```
-
-See [Working with results](working-with-results) for more on `char_interval` and
-alignment status.
+world knowledge versus staying strictly on the text. Asking for an attribute like
+`"literary_context": "tragic heroine"` invites inference; asking only for
+attributes visible in the text keeps results close to the evidence.
 
 ## Practical guidance
 
@@ -103,9 +96,11 @@ alignment status.
 - **For non-spaced languages** (such as Japanese), pass a `UnicodeTokenizer` so
   character-based segmentation and alignment work correctly.
 
-## Related
+## See also
 
-- [How extraction works](how-extraction-works) — where prompts and examples sit
-  in the pipeline.
-- [API reference: `ExampleData` and `Extraction`](../reference/api#2-data-types)
-  — exact fields and types.
+- [How extraction works](../concepts/how-extraction-works) — where prompts and
+  examples sit in the pipeline.
+- [Grounding](../concepts/grounding) — why verbatim, in-order examples align
+  cleanly.
+- [API reference §2](../reference/api#2-data-types) — exact `ExampleData` and
+  `Extraction` fields and types.

@@ -1,0 +1,9 @@
+{
+  "label": "How-to guides",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "title": "How-to guides",
+    "description": "Task-focused recipes for common LangExtract jobs: long-document extraction, switching model backends, writing prompts and examples, working with results, and supplying credentials."
+  }
+}

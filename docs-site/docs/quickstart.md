@@ -13,7 +13,7 @@ backend.
 
 - Python 3.10 or newer.
 - A Gemini API key for cloud models. (Local models via Ollama don't need a key —
-  see the model backends concept once you've finished here.)
+  see [Model backends](concepts/model-backends).)
 
 ## 1. Install
 
@@ -30,8 +30,8 @@ export LANGEXTRACT_API_KEY="your-api-key-here"
 ```
 
 You can get a key from [Google AI Studio](https://aistudio.google.com/app/apikey).
-A `.env` file works too — see [Prompts & examples](concepts/prompts-and-examples)
-and the [API reference](reference/api) for the other ways to supply credentials.
+See [Supply API keys](how-to/api-keys) for the other ways to provide credentials,
+including a `.env` file and provider-specific variables.
 
 ## 3. Define the task and one example
 
@@ -74,7 +74,7 @@ examples = [
 ]
 ```
 
-:::tip Make each example verbatim
+:::tip[Make each example verbatim]
 Each `extraction_text` should be copied **exactly** from the example's `text`,
 in order of appearance, with no overlaps. LangExtract checks this and emits
 prompt-alignment warnings by default when examples don't follow the pattern.
@@ -96,8 +96,8 @@ result = lx.extract(
 
 `result` is an `AnnotatedDocument`. Its `.extractions` is a list of `Extraction`
 objects, each with the matched text, its character span in the source, and any
-attributes the model assigned. See [Working with results](concepts/working-with-results)
-for the full shape.
+attributes the model assigned. See [Work with results](how-to/work-with-results)
+for the full flow.
 
 ## 5. Save and visualize
 
@@ -128,8 +128,9 @@ highlighted in its original context.
 
 ## What's next
 
-- **Process a whole novel from a URL**, with multiple passes and parallel
-  workers — see [How extraction works](concepts/how-extraction-works#scaling-to-long-documents).
-- **Use a different model** (OpenAI, or local via Ollama) — see the model
-  backends section of [How extraction works](concepts/how-extraction-works#model-backends).
-- **Tune your prompt and examples** — [Prompts & examples](concepts/prompts-and-examples).
+- **Process a long document from a URL**, with multiple passes and parallel
+  workers — see the [long-document workflow](how-to/long-document-workflow).
+- **Use a different model** — [OpenAI](how-to/use-openai) or
+  [a local model via Ollama](how-to/use-ollama).
+- **Tune your prompt and examples** —
+  [Write prompts & examples](how-to/write-prompts-and-examples).

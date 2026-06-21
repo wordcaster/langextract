@@ -38,13 +38,15 @@ trace each value back to where it came from.
   few minutes.
 - **[How extraction works](concepts/how-extraction-works)** — the pipeline from
   raw text to grounded results.
-- **[Prompts & examples](concepts/prompts-and-examples)** — the single biggest
-  lever on output quality.
-- **[Working with results](concepts/working-with-results)** — the result
-  objects and how grounding is represented.
+- **[Grounding](concepts/grounding)** — how each value is tied back to the
+  source, and how to tell a real extraction from a hallucination.
+- **[Model backends](concepts/model-backends)** — how `model_id` selects Gemini,
+  OpenAI, or a local model.
+- **[How-to guides](how-to/long-document-workflow)** — task recipes: long
+  documents, switching models, writing prompts, and supplying credentials.
 - **[API reference](reference/api)** — signatures, parameters, and types.
 
-:::note Project status
+:::note[Project status]
 LangExtract is open-source under the Apache 2.0 license. As stated in the
 project's own README, **it is not an officially supported Google product.**
 This documentation site is an independent documentation effort and is not

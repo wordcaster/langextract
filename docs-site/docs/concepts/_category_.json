@@ -1,9 +1,9 @@
 {
-  "label": "Core concepts",
+  "label": "Concepts",
   "position": 3,
   "link": {
     "type": "generated-index",
-    "title": "Core concepts",
-    "description": "How LangExtract works and the ideas you return to while building: the extraction pipeline, prompt and example design, and the shape of your results."
+    "title": "Concepts",
+    "description": "The mental model behind LangExtract: the extraction pipeline, how grounding ties results back to the source, and how a model_id selects a provider."
   }
 }

@@ -155,7 +155,7 @@ lx.data.Extraction(
 ```
 
 `char_interval` is `None` when the extraction couldn't be located in the source
-text — the grounding signal. See [Working with results](../concepts/working-with-results).
+text — the grounding signal. See [Grounding](../concepts/grounding).
 
 ### `Document`
 

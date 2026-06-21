@@ -31,10 +31,11 @@ const config = {
   deploymentBranch: 'gh-pages',
 
   onBrokenLinks: 'throw',
+  onBrokenAnchors: 'throw',
 
   markdown: {
     hooks: {
-      onBrokenMarkdownLinks: 'warn',
+      onBrokenMarkdownLinks: 'throw',
     },
   },
 
@@ -102,6 +103,7 @@ const config = {
             items: [
               {label: 'Introduction', to: '/docs/intro'},
               {label: 'Quickstart', to: '/docs/quickstart'},
+              {label: 'How-to guides', to: '/docs/how-to/long-document-workflow'},
               {label: 'API reference', to: '/docs/reference/api'},
             ],
           },
@@ -113,12 +115,12 @@ const config = {
                 to: '/docs/concepts/how-extraction-works',
               },
               {
-                label: 'Prompts & examples',
-                to: '/docs/concepts/prompts-and-examples',
+                label: 'Grounding',
+                to: '/docs/concepts/grounding',
               },
               {
-                label: 'Working with results',
-                to: '/docs/concepts/working-with-results',
+                label: 'Model backends',
+                to: '/docs/concepts/model-backends',
               },
             ],
           },

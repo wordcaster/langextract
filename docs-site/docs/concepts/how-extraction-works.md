@@ -37,91 +37,34 @@ text ──▶ chunk ──▶ infer (LLM) ──▶ resolve (parse) ──▶ a
 6. **Result.** Everything is collected into an `AnnotatedDocument` (or a list of
    them, if you passed multiple documents).
 
-See [Working with results](working-with-results) for the objects this produces.
+[Grounding](grounding) explains stages 4 and 5 in more depth, and the
+[API reference](../reference/api#2-data-types) lists the exact result objects.
 
 ## Examples are required, and they do the work
 
 `lx.extract` raises a `ValueError` if you don't pass examples. They aren't
 optional decoration — they define the output schema and demonstrate the task.
-This is covered in depth in [Prompts & examples](prompts-and-examples).
+See [Write prompts & examples](../how-to/write-prompts-and-examples) for how to
+write them well.
 
-## Parallelism: `batch_length` and `max_workers`
+## Which model runs the inference
 
-Chunks are processed concurrently. Two parameters govern throughput:
-
-- `max_workers` (default `10`) — the maximum number of concurrent workers.
-- `batch_length` (default `10`) — how many chunks are processed per batch.
-
-Effective parallelism is `min(batch_length, max_workers)`. If you raise
-`max_workers` above `batch_length`, only `batch_length` workers are actually
-used, and LangExtract warns you. To scale up, raise both. Higher `max_workers`
-increases speed without increasing token cost — it's the cheap lever.
-
-## Recall: `extraction_passes`
-
-`extraction_passes` (default `1`) runs the whole extraction more than once and
-merges non-overlapping results, with the first pass winning any overlap. More
-passes find more entities in large or dense documents — but each pass
-**reprocesses the tokens**, so `extraction_passes=3` roughly triples token cost.
-Use it when recall matters more than spend.
-
-## Context across chunks: `context_window_chars`
-
-By default, chunks are processed independently. Set `context_window_chars` to
-carry that many characters of the previous chunk forward as context, which helps
-resolve references that cross a chunk boundary (for example, a pronoun whose
-antecedent was in the prior chunk).
-
-## Scaling to long documents
-
-For large inputs, combine the levers above. You can also pass a URL directly;
-LangExtract will fetch it when `fetch_urls=True`.
-
-```python
-result = lx.extract(
-    text_or_documents="https://www.gutenberg.org/files/1513/1513-0.txt",
-    prompt_description=prompt,
-    examples=examples,
-    model_id="gemini-3.5-flash",
-    extraction_passes=3,    # higher recall (and ~3x token cost)
-    max_workers=20,         # more parallelism, no extra token cost
-    max_char_buffer=1000,   # smaller chunks, better accuracy
-)
-```
-
-:::caution Fetching URLs is opt-in and unsanitized
-`fetch_urls` is `False` by default; every string is treated as literal text.
-When you set it to `True`, http(s) inputs are downloaded with no sanitization,
-which carries server-side request forgery (SSRF) risk. Only enable it for URLs
-from a trusted source, ideally in a sandboxed environment.
-:::
-
-## Model backends
-
-The `model_id` you pass selects a provider automatically by pattern-matching:
-
-| Model ID looks like | Provider | Notes |
-|---|---|---|
-| `gemini-...` | Gemini (default) | Built in. `gemini-3.5-flash` is the default `model_id`. |
-| `gpt-4...`, `gpt-5...` | OpenAI | Requires `pip install langextract[openai]`. |
-| `gemma...`, `llama...`, `mistral...`, `qwen...`, and more | Ollama (local) | No API key; set `model_url` to your Ollama server. |
-
-If your model ID doesn't match a known pattern, pass an explicit configuration
-with `config=lx.factory.ModelConfig(model_id=..., provider=...)`. The full list
-of routing patterns and the provider plugin system are in the
-[API reference](../reference/api#4-providers--model-routing).
-
-```python
-# OpenAI — the key is read from OPENAI_API_KEY automatically.
-result = lx.extract(..., model_id="gpt-4o")
-
-# Local model via Ollama.
-result = lx.extract(..., model_id="gemma2:2b", model_url="http://localhost:11434")
-```
+The "infer" stage routes to a provider based on the `model_id` you pass — Gemini
+by default, with OpenAI and local Ollama models also supported. See
+[Model backends](model-backends) for how that selection works.
 
 ## Why this design
 
 These stages map directly to the project's stated goals: source grounding (the
-align + ground stages), reliable structure (examples + schema constraints), and
-handling long documents (chunking, parallelism, multiple passes). Each parameter
-above is a knob on one of those goals.
+align and ground stages), reliable structure (examples plus schema constraints),
+and handling long documents (chunking, parallel processing, and multiple passes).
+The parameters that tune each stage are introduced where you use them — see the
+[long-document workflow](../how-to/long-document-workflow) for the chunking,
+parallelism, and recall levers in a real scenario.
+
+## See also
+
+- [Grounding](grounding) — how results are tied back to the source text.
+- [Model backends](model-backends) — how `model_id` picks a provider.
+- [Long-document workflow](../how-to/long-document-workflow) — the scaling levers
+  in practice.
