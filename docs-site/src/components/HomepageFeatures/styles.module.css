@@ -1,0 +1,15 @@
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.feature {
+  padding: 1rem 1.25rem;
+  height: 100%;
+}
+
+.feature h3 {
+  margin-bottom: 0.5rem;
+}
