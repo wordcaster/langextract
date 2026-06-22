@@ -29,7 +29,7 @@ export OPENAI_API_KEY="your-openai-key"
 ## 3. Run an extraction with an OpenAI model
 
 Pass an OpenAI `model_id` such as `gpt-4o`. LangExtract selects the provider
-from the model id automatically — see [Model backends](../concepts/model-backends).
+from the model id automatically. See [Model backends](../concepts/model-backends).
 
 ```python
 import langextract as lx
@@ -70,7 +70,7 @@ result = lx.extract(
 
 ## See also
 
-- [Model backends](../concepts/model-backends) — how `model_id` selects OpenAI.
-- [Supply API keys](api-keys) — credential options and precedence.
-- [API reference §4](../reference/api#4-providers--model-routing) — the exact
+- [Model backends](../concepts/model-backends): how `model_id` selects OpenAI.
+- [Supply API keys](api-keys): credential options and precedence.
+- [API reference §4](../reference/api#4-providers--model-routing): the exact
   OpenAI model-id patterns.

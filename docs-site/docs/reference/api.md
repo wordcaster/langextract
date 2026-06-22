@@ -8,8 +8,8 @@ title: API reference
 The public API reachable from `import langextract as lx`. Signatures, types,
 and defaults below are drawn from the LangExtract source at version **1.5.0**.
 
-The top level exposes two convenience functions — `lx.extract` and
-`lx.visualize` — plus submodules accessed lazily: `lx.data`, `lx.io`,
+The top level exposes two convenience functions (`lx.extract` and
+`lx.visualize`) plus submodules accessed lazily: `lx.data`, `lx.io`,
 `lx.factory`, `lx.providers`, `lx.exceptions`, and others.
 
 ---
@@ -56,18 +56,18 @@ a `list[AnnotatedDocument]` when it is an iterable of `Document`.
 
 **Raises:**
 
-- `ValueError` — if `examples` is `None` or empty.
-- `ValueError` — if no API key is provided or found in the environment.
-- `requests.RequestException` — if `fetch_urls=True` and the download fails.
-- `PromptAlignmentError` — if prompt validation fails in `ERROR` mode.
+- `ValueError`: if `examples` is `None` or empty.
+- `ValueError`: if no API key is provided or found in the environment.
+- `requests.RequestException`: if `fetch_urls=True` and the download fails.
+- `PromptAlignmentError`: if prompt validation fails in `ERROR` mode.
 
 ### Key parameters
 
 | Parameter | Default | Notes |
 |---|---|---|
-| `text_or_documents` | — | A string, an http(s) URL (fetched only if `fetch_urls=True`), or an iterable of `Document`. |
+| `text_or_documents` | (required) | A string, an http(s) URL (fetched only if `fetch_urls=True`), or an iterable of `Document`. |
 | `prompt_description` | `None` | Instructions for what to extract. |
-| `examples` | `None` | List of `ExampleData`. Required — extraction raises without at least one. |
+| `examples` | `None` | List of `ExampleData`. Required: extraction raises without at least one. |
 | `model_id` | `"gemini-3.5-flash"` | Selects the provider by pattern (see [§4](#4-providers--model-routing)). |
 | `api_key` | `None` | Falls back to environment variables (see [§4](#4-providers--model-routing)). |
 | `format_type` | `JSON` | `FormatType.JSON` or `FormatType.YAML`. |
@@ -115,9 +115,9 @@ Provider-specific constructor kwargs. Examples seen in the project docs:
 
 ### Deprecations
 
-- `language_model_type` — emits a `FutureWarning`; use `model`, `config`, or
+- `language_model_type`: emits a `FutureWarning`; use `model`, `config`, or
   `model_id`. Slated for removal in v2.0.0.
-- `gemini_schema` (inside `language_model_params`) — ignored with a
+- `gemini_schema` (inside `language_model_params`): ignored with a
   `FutureWarning`; schema constraints are handled automatically.
 
 ---
@@ -155,7 +155,7 @@ lx.data.Extraction(
 ```
 
 `char_interval` is `None` when the extraction couldn't be located in the source
-text — the grounding signal. See [Grounding](../concepts/grounding).
+text: the grounding signal. See [Grounding](../concepts/grounding).
 
 ### `Document`
 
@@ -200,7 +200,7 @@ lx.data.CharInterval(start_pos=None, end_pos=None)   # start inclusive, end excl
 
 ---
 
-## 3. Model configuration — `lx.factory`
+## 3. Model configuration: `lx.factory`
 
 ### `ModelConfig`
 
@@ -266,28 +266,28 @@ The factory auto-resolves credentials when `api_key` isn't passed:
 | OpenAI | `OPENAI_API_KEY`, then `LANGEXTRACT_API_KEY` |
 | Ollama | `OLLAMA_BASE_URL` (default `http://localhost:11434`) |
 
-### Router functions — `lx.providers.router`
+### Router functions: `lx.providers.router`
 
-- `register(*patterns, priority=0)` — decorator registering a provider class.
-- `register_lazy(*patterns, target="module:Class", priority=0)` — register by
+- `register(*patterns, priority=0)`: decorator registering a provider class.
+- `register_lazy(*patterns, target="module:Class", priority=0)`: register by
   import path without importing dependencies.
-- `resolve(model_id)` — return the provider class for a model id (highest
+- `resolve(model_id)`: return the provider class for a model id (highest
   matching priority wins).
-- `resolve_provider(provider_name)` — return the provider class by name or class
+- `resolve_provider(provider_name)`: return the provider class by name or class
   name (case-insensitive).
-- `list_providers()` / `list_entries()` — inspect registered patterns and
+- `list_providers()` / `list_entries()`: inspect registered patterns and
   priorities.
 
-### Plugin loading — `lx.providers`
+### Plugin loading: `lx.providers`
 
-- `load_builtins_once()` — register the built-in providers (idempotent).
-- `load_plugins_once()` — discover third-party providers via the
+- `load_builtins_once()`: register the built-in providers (idempotent).
+- `load_plugins_once()`: discover third-party providers via the
   `langextract.providers` entry-point group. Set `LANGEXTRACT_DISABLE_PLUGINS=1`
   to skip. Default plugin priority is 20.
 
 ---
 
-## 5. Visualization — `lx.visualize`
+## 5. Visualization: `lx.visualize`
 
 ```python
 lx.visualize(
@@ -311,7 +311,7 @@ Builds a self-contained, interactive HTML view of grounded extractions.
 
 ---
 
-## 6. Input / output — `lx.io`
+## 6. Input / output: `lx.io`
 
 ```python
 lx.io.save_annotated_documents(
@@ -337,14 +337,14 @@ lx.io.is_url(text)  # -> bool
 ```
 
 - `save_annotated_documents` raises `InvalidDatasetError` if nothing is written.
-  `output_name` is **not** path-sanitized — validate untrusted input before
+  `output_name` is **not** path-sanitized. Validate untrusted input before
   using it.
 - `lx.io.Dataset` is a frozen abstract dataclass whose `.load(delimiter=",")`
   reads a CSV into `Document` objects.
 
 ---
 
-## 7. Exceptions — `lx.exceptions`
+## 7. Exceptions: `lx.exceptions`
 
 All inherit from `LangExtractError`, so a single `except LangExtractError`
 catches any library error.
@@ -373,7 +373,7 @@ are available from `langextract.core.exceptions`.
 
 ---
 
-## 8. Inference output — `ScoredOutput`
+## 8. Inference output: `ScoredOutput`
 
 What a provider's `infer()` yields per prompt, from `langextract.core.types`:
 

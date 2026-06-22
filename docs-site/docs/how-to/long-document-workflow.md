@@ -6,7 +6,7 @@ title: Extract from a long document
 # Extract from a long document
 
 The [Quickstart](../quickstart) extracts from a single sentence. Real inputs are
-longer — articles, reports, chapters — and length is where LangExtract's
+longer (articles, reports, chapters), and length is where LangExtract's
 chunking, parallelism, and multi-pass options earn their place. This guide runs
 one continuous scenario end to end: a multi-paragraph passage in, grounded
 extractions out, and an interactive HTML visualization to review them.
@@ -63,7 +63,7 @@ source_text = textwrap.dedent("""\
 ```
 
 For a document on the web, you can hand `lx.extract` an http(s) URL instead of a
-string and let it fetch the text — but only with `fetch_urls=True`, which is off
+string and let it fetch the text, but only with `fetch_urls=True`, which is off
 by default.
 
 :::caution[Fetching URLs is opt-in and unsanitized]
@@ -103,8 +103,8 @@ result = lx.extract(
   tokens, so `extraction_passes=3` roughly triples token cost.
 
 A fourth lever, **`context_window_chars`**, carries characters from the previous
-chunk forward so a reference that crosses a chunk boundary — a pronoun whose
-antecedent was in the prior chunk — still resolves.
+chunk forward so a reference that crosses a chunk boundary (a pronoun whose
+antecedent was in the prior chunk) still resolves.
 
 ## 4. Keep the grounded results
 
@@ -142,12 +142,12 @@ with open("long_document.html", "w") as f:
 ```
 
 Open `long_document.html` in a browser to step through the extractions in the
-order they appear in the source — the payoff of the workflow.
+order they appear in the source: the payoff of the workflow.
 
 ## See also
 
-- [How extraction works](../concepts/how-extraction-works) — the pipeline these
+- [How extraction works](../concepts/how-extraction-works): the pipeline these
   levers tune.
-- [Grounding](../concepts/grounding) — how to read each result.
-- [Work with results](work-with-results) — more on saving, loading, and
+- [Grounding](../concepts/grounding): how to read each result.
+- [Work with results](work-with-results): more on saving, loading, and
   visualizing.

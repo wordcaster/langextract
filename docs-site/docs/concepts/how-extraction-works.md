@@ -34,7 +34,7 @@ text ──▶ chunk ──▶ infer (LLM) ──▶ resolve (parse) ──▶ a
    configurable threshold.
 5. **Ground.** A successful match records a character span (`char_interval`).
    When LangExtract can't locate a candidate in the source, it leaves the
-   `char_interval` empty — the signal that the value wasn't actually in your text.
+   `char_interval` empty: the signal that the value wasn't actually in your text.
 6. **Result.** LangExtract collects everything into an `AnnotatedDocument` (or a
    list of them, if you passed multiple documents).
 
@@ -44,13 +44,13 @@ text ──▶ chunk ──▶ infer (LLM) ──▶ resolve (parse) ──▶ a
 ## Examples are required, and they do the work
 
 `lx.extract` raises a `ValueError` if you don't pass examples. They aren't
-optional decoration — they define the output schema and demonstrate the task.
+optional decoration. They define the output schema and demonstrate the task.
 See [Write prompts & examples](../how-to/write-prompts-and-examples) for how to
 write them well.
 
 ## Which model runs the inference
 
-The "infer" stage routes to a provider based on the `model_id` you pass — Gemini
+The "infer" stage routes to a provider based on the `model_id` you pass: Gemini
 by default, with OpenAI and local Ollama models also supported. See
 [Model backends](model-backends) for how that selection works.
 
@@ -59,13 +59,13 @@ by default, with OpenAI and local Ollama models also supported. See
 These stages map directly to the project's stated goals: source grounding (the
 align and ground stages), reliable structure (examples plus schema constraints),
 and handling long documents (chunking, parallel processing, and multiple passes).
-The parameters that tune each stage appear where you use them — see the
+The parameters that tune each stage appear where you use them. See the
 [long-document workflow](../how-to/long-document-workflow) for the chunking,
 parallelism, and recall levers in a real scenario.
 
 ## See also
 
-- [Grounding](grounding) — how results are tied back to the source text.
-- [Model backends](model-backends) — how `model_id` picks a provider.
-- [Long-document workflow](../how-to/long-document-workflow) — the scaling levers
+- [Grounding](grounding): how results are tied back to the source text.
+- [Model backends](model-backends): how `model_id` picks a provider.
+- [Long-document workflow](../how-to/long-document-workflow): the scaling levers
   in practice.

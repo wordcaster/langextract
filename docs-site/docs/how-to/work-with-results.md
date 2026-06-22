@@ -93,8 +93,8 @@ with open("visualization.html", "w") as f:
 
 ## See also
 
-- [Grounding](../concepts/grounding) — what `char_interval` and alignment status
+- [Grounding](../concepts/grounding): what `char_interval` and alignment status
   mean.
-- [Quickstart](../quickstart) — the end-to-end version of this flow.
-- [API reference §2](../reference/api#2-data-types) — `AnnotatedDocument`,
+- [Quickstart](../quickstart): the end-to-end version of this flow.
+- [API reference §2](../reference/api#2-data-types): `AnnotatedDocument`,
   `Extraction`, and `CharInterval` fields.

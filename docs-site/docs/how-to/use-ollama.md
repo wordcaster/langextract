@@ -52,6 +52,6 @@ You don't need an API key. To reach a server at a different address, pass
 
 ## See also
 
-- [Model backends](../concepts/model-backends) — how `model_id` selects Ollama.
-- [API reference §4](../reference/api#4-providers--model-routing) — Ollama
+- [Model backends](../concepts/model-backends): how `model_id` selects Ollama.
+- [API reference §4](../reference/api#4-providers--model-routing): Ollama
   model-id patterns and provider options.

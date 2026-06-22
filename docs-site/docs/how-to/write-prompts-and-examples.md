@@ -11,8 +11,8 @@ model with strong ones. This guide covers how to write both.
 
 ## The two pieces
 
-- **`prompt_description`** — plain-language instructions for *what* to extract.
-- **`examples`** — a list of `ExampleData`, each pairing some `text` with the
+- **`prompt_description`**: plain-language instructions for *what* to extract.
+- **`examples`**: a list of `ExampleData`, each pairing some `text` with the
   `Extraction`s you'd want from it. Examples demonstrate *how* the output should
   look.
 
@@ -38,7 +38,7 @@ examples = [
 ## Examples are required
 
 `lx.extract` raises a `ValueError` if `examples` is missing or empty. There is
-no zero-shot mode — provide at least one example.
+no zero-shot mode. Provide at least one example.
 
 ## Follow the alignment rules
 
@@ -46,27 +46,27 @@ LangExtract aligns each extraction back to the source text. Examples that follow
 these rules teach the model a pattern that aligns cleanly on real input:
 
 1. **Verbatim text.** Copy each `extraction_text` exactly from the example's
-   `text` — no paraphrasing, no normalization.
+   `text` (no paraphrasing, no normalization).
 2. **In order of appearance.** List extractions in the order they occur in the
    text.
 3. **No overlaps.** Don't let spans overlap each other.
 
 When examples violate these rules, LangExtract emits **prompt-alignment
-warnings**. By default these are warnings, not errors, and extraction continues —
+warnings**. By default these are warnings, not errors, and extraction continues,
 but resolving them is one of the highest-leverage things you can do.
 
 ## Raise the strictness when you need to
 
 Two parameters control how prompt validation behaves:
 
-- `prompt_validation_level` — `OFF`, `WARNING` (default), or `ERROR` (raise on
+- `prompt_validation_level`: `OFF`, `WARNING` (default), or `ERROR` (raise on
   failures).
-- `prompt_validation_strict` — when `True` with `ERROR`, also raises on non-exact
+- `prompt_validation_strict`: when `True` with `ERROR`, also raises on non-exact
   (fuzzy or partial) matches.
 
 ## Use attributes to add structure within a class
 
-Each `Extraction` can carry `attributes` — a dictionary of additional fields.
+Each `Extraction` can carry `attributes`, a dictionary of additional fields.
 This is how you capture properties of an entity without inventing a new class for
 every variation.
 
@@ -92,15 +92,15 @@ attributes visible in the text keeps results close to the evidence.
 - **One strong example beats several weak ones.** Start with a single
   high-quality example and add more only to cover genuinely different cases.
 - **State the format expectations in the prompt** (order, exact text, no
-  overlap) — it reinforces what the examples demonstrate.
+  overlap). It reinforces what the examples demonstrate.
 - **For non-spaced languages** (such as Japanese), pass a `UnicodeTokenizer` so
   character-based segmentation and alignment work correctly.
 
 ## See also
 
-- [How extraction works](../concepts/how-extraction-works) — where prompts and
+- [How extraction works](../concepts/how-extraction-works): where prompts and
   examples sit in the pipeline.
-- [Grounding](../concepts/grounding) — why verbatim, in-order examples align
+- [Grounding](../concepts/grounding): why verbatim, in-order examples align
   cleanly.
-- [API reference §2](../reference/api#2-data-types) — exact `ExampleData` and
+- [API reference §2](../reference/api#2-data-types): exact `ExampleData` and
   `Extraction` fields and types.

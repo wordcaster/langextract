@@ -6,7 +6,7 @@ title: Model backends
 # Model backends
 
 LangExtract does not hardcode a single model. The `model_id` you pass to
-`lx.extract` selects a *provider* — the integration that talks to a model — and
+`lx.extract` selects a *provider* (the integration that talks to a model), and
 different providers run on different infrastructure. This page explains how that
 selection works conceptually; for step-by-step setup, see the how-to guides
 linked below.
@@ -44,10 +44,10 @@ itself. For details, see the
 
 ## See also
 
-- [Use OpenAI models](../how-to/use-openai) — run an OpenAI model.
-- [Use local models with Ollama](../how-to/use-ollama) — run a model on your own
+- [Use OpenAI models](../how-to/use-openai): run an OpenAI model.
+- [Use local models with Ollama](../how-to/use-ollama): run a model on your own
   machine.
-- [Supply API keys](../how-to/api-keys) — where each provider looks for
+- [Supply API keys](../how-to/api-keys): where each provider looks for
   credentials.
-- [API reference §4](../reference/api#4-providers--model-routing) — exact
+- [API reference §4](../reference/api#4-providers--model-routing): exact
   patterns and environment variables.

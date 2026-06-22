@@ -11,8 +11,8 @@ write. You describe what to pull out and show a few examples; LangExtract runs
 the model, maps every extraction back to its exact location in the source text,
 and can render the results as an interactive, highlighted HTML view.
 
-It is built for text that doesn't fit a fixed schema up front — clinical notes,
-reports, long-form documents — where you want structured output *and* a way to
+It is built for text that doesn't fit a fixed schema up front (clinical notes,
+reports, long-form documents), where you want structured output *and* a way to
 trace each value back to where it came from.
 
 ## What it gives you
@@ -34,17 +34,17 @@ trace each value back to where it came from.
 
 ## Where to go next
 
-- **[Quickstart](quickstart)** — extract and visualize your first results in a
+- **[Quickstart](quickstart)**: extract and visualize your first results in a
   few minutes.
-- **[How extraction works](concepts/how-extraction-works)** — the pipeline from
+- **[How extraction works](concepts/how-extraction-works)**: the pipeline from
   raw text to grounded results.
-- **[Grounding](concepts/grounding)** — how each value is tied back to the
+- **[Grounding](concepts/grounding)**: how each value is tied back to the
   source, and how to tell a real extraction from a hallucination.
-- **[Model backends](concepts/model-backends)** — how `model_id` selects Gemini,
+- **[Model backends](concepts/model-backends)**: how `model_id` selects Gemini,
   OpenAI, or a local model.
-- **[How-to guides](how-to/long-document-workflow)** — task recipes: long
+- **[How-to guides](how-to/long-document-workflow)**: task recipes for long
   documents, switching models, writing prompts, and supplying credentials.
-- **[API reference](reference/api)** — signatures, parameters, and types.
+- **[API reference](reference/api)**: signatures, parameters, and types.
 
 :::note[Project status]
 LangExtract is open-source under the Apache 2.0 license. As stated in the

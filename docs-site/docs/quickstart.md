@@ -12,7 +12,7 @@ backend.
 ## Prerequisites
 
 - Python 3.10 or newer.
-- A Gemini API key for cloud models. (Local models via Ollama don't need a key —
+- A Gemini API key for cloud models. (Local models via Ollama don't need a key;
   see [Model backends](concepts/model-backends).)
 
 ## 1. Install
@@ -37,7 +37,7 @@ including a `.env` file and provider-specific variables.
 
 Two things drive an extraction: a **prompt** that says what to pull out, and at
 least one **example** that shows the model the shape you want. Examples are
-required — `extract` raises a `ValueError` without them.
+required: `extract` raises a `ValueError` without them.
 
 ```python
 import langextract as lx
@@ -129,8 +129,8 @@ highlighted in its original context.
 ## What's next
 
 - **Process a long document from a URL**, with multiple passes and parallel
-  workers — see the [long-document workflow](how-to/long-document-workflow).
-- **Use a different model** — [OpenAI](how-to/use-openai) or
+  workers. See the [long-document workflow](how-to/long-document-workflow).
+- **Use a different model**: [OpenAI](how-to/use-openai) or
   [a local model via Ollama](how-to/use-ollama).
-- **Tune your prompt and examples** —
+- **Tune your prompt and examples**:
   [Write prompts & examples](how-to/write-prompts-and-examples).

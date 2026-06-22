@@ -25,8 +25,8 @@ export LANGEXTRACT_API_KEY="your-api-key"
 Each cloud provider also reads its own variable, which takes precedence over
 `LANGEXTRACT_API_KEY`:
 
-- **Gemini** — `GEMINI_API_KEY`, then `LANGEXTRACT_API_KEY`.
-- **OpenAI** — `OPENAI_API_KEY`, then `LANGEXTRACT_API_KEY`.
+- **Gemini**: `GEMINI_API_KEY`, then `LANGEXTRACT_API_KEY`.
+- **OpenAI**: `OPENAI_API_KEY`, then `LANGEXTRACT_API_KEY`.
 
 Use these when you work with more than one provider and want a distinct key for
 each.
@@ -74,7 +74,7 @@ Add `.env` to your `.gitignore` so the key is never committed.
 
 ## See also
 
-- [Model backends](../concepts/model-backends) — which provider a `model_id`
+- [Model backends](../concepts/model-backends): which provider a `model_id`
   selects.
-- [API reference §4](../reference/api#4-providers--model-routing) — the exact
+- [API reference §4](../reference/api#4-providers--model-routing): the exact
   environment variables each provider reads, and their precedence.
