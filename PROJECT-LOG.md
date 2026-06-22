@@ -58,6 +58,7 @@ Format: date | agent | what was done | decisions made and why | handed off / lef
   - `content-model-DRAFT.md` — first-pass content model preview (superseded by `CONTENT-MODEL.md` at the project root; kept as history).
   - `ia-DRAFT.md` — first-pass IA / nav / sidebar / developer-journey preview (decisions + alternatives).
 - **CONTENT-MODEL.md** (project root): the approved, non-draft content model the site is built on. Reflects the actual file tree + autogen sidebar.
+- **HANDOFF.md** (project root): point-in-time handoff snapshot (state, next steps, rules, redeploy command). Created 2026-06-22 after the GitHub Pages deploy. This PROJECT-LOG remains the canonical, append-only record.
 - **docs-site/:** the Docusaurus site (classic-js, Docusaurus 3.10.1). Scaffold chrome (config, homepage, branding) is now real, not template.
   - Pages live in `docs-site/docs/` — content awaiting John's review of the *running* site.
 - **career-plan.md / docusaurus-build-and-article-plan.md:** referenced by the original brief as strategic artifacts; NOT created this session (out of scope for the scaffold/preview pass). Create when John brings that material.
