@@ -24,8 +24,7 @@ function HomepageHeader() {
           </Link>
           <Link
             className="button button--outline button--secondary button--lg"
-            to="/docs/intro"
-            style={{marginLeft: '0.75rem'}}>
+            to="/docs/intro">
             What is LangExtract?
           </Link>
         </div>

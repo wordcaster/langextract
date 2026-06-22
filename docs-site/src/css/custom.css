@@ -28,3 +28,24 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Mobile responsiveness ----------------------------------------------------- */
+
+/* Wide tables (e.g. the API reference) overflow the viewport on small screens.
+   Let each table scroll horizontally inside its own box instead of pushing the
+   whole page sideways. */
+.markdown table {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Long inline code in headings (e.g. `prompt_validation_level`) can overflow
+   on narrow screens. Allow it to wrap. */
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  overflow-wrap: break-word;
+}
